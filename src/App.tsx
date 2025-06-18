@@ -1,15 +1,19 @@
-
+import { useAppSelector, useAppDispatch } from "./hooks";
+import { useEffect } from "react";
 
 const App = () => {
-  // const [count, setCount] = useState(0)
+  const app = useAppSelector((state) => state.app);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    console.log(app.url, app.apiKey, app.searchTerm);
+  }, [app])
 
   return (
     <>
-      <div className="text-red-500">
-        Testing this out
-      </div>
+      <div className="text-red-500">Testing this out</div>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
