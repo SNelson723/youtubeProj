@@ -1,3 +1,4 @@
+import SearchBar from "./components/SearchBar";
 import { useAppSelector, useAppDispatch } from "./hooks";
 import { useEffect } from "react";
 
@@ -10,9 +11,9 @@ const App = () => {
   }, [app])
 
   return (
-    <>
-      <div className="text-red-500">Testing this out</div>
-    </>
+    <div className="w-screen h-screen bg-slate-800 text-white">
+      <SearchBar />
+    </div>
   );
 };
 

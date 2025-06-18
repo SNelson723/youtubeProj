@@ -33,7 +33,7 @@ export type YTItem ={
   }
 }
 
-export type YTResponse = {
+export type YTData = {
   kind: string;
   etag: string;
   nextPageToken: string;
