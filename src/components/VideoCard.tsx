@@ -1,15 +1,42 @@
-import { useAppSelector } from "../hooks";
+import { setSelectedVideo } from "../features/appSlice";
+import { useAppDispatch } from "../hooks";
 
-const VideoCard = () => {
-  const { results } = useAppSelector((state) => state.app);
+export type VideoCardProps = {
+  videoId: string;
+  title: string;
+  description: string;
+  thumbnail: {
+    url: string;
+    width: number;
+    height: number;
+  };
+  channelTitle: string;
+};
 
-  if (results.length === 0) return null;
+const VideoCard = ({
+  videoId,
+  title,
+  description,
+  thumbnail,
+  channelTitle
+}: VideoCardProps) => {
+  const dispatch = useAppDispatch();
 
   return (
-    <div>
-      Found Results
+    <div
+      onClick={() => dispatch(setSelectedVideo(videoId))}
+      className="flex flex-col m-2 cursor-pointer"
+    >
+      <img
+        src={thumbnail.url}
+        height={thumbnail.height}
+        width={thumbnail.width}
+      />
+      <div>{title}</div>
+      <div>{channelTitle}</div>
+      {/* <div>{description}</div> */}
     </div>
-  )
+  );
 };
 
 export default VideoCard;

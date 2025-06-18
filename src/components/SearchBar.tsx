@@ -1,4 +1,4 @@
-import { setSearchTerm } from "../features/appSlice";
+import { setSearchTerm, setResults } from "../features/appSlice";
 import { useAppSelector, useAppDispatch } from "../hooks";
 import { getVideos } from "../api/videosApi";
 
@@ -15,7 +15,7 @@ const SearchBar = () => {
       .then((resp) => {
         const j = resp.data;
         dispatch(setSearchTerm(""));
-        console.log('howdy', j)
+        dispatch(setResults(j.items));
       })
       .catch((err) => console.log(err));
   };

@@ -1,11 +1,12 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { type YTData } from "../types";
+import { type YTItem } from "../types";
 
 export interface AppState {
   url: string;
   apiKey: string;
   searchTerm: string;
-  results: YTData[];
+  results: YTItem[];
+  selectedVideo: string;
 }
 
 const iniitalState: AppState = {
@@ -13,6 +14,7 @@ const iniitalState: AppState = {
   apiKey: "AIzaSyDTk6mwzjzl-GeQXI7GsFB1Hp3wa6-_F9Q",
   searchTerm: "",
   results: [],
+  selectedVideo: "",
 };
 
 export const appSlice = createSlice({
@@ -22,11 +24,14 @@ export const appSlice = createSlice({
     setSearchTerm: (state, action: PayloadAction<string>) => {
       state.searchTerm = action.payload;
     },
-    setResults: (state, action: PayloadAction<YTData[]>) => {
+    setResults: (state, action: PayloadAction<YTItem[]>) => {
       state.results = action.payload;
+    },
+    setSelectedVideo: (state, action: PayloadAction<string>) => {
+      state.selectedVideo = action.payload;
     },
   },
 });
 
-export const { setSearchTerm, setResults } = appSlice.actions;
+export const { setSearchTerm, setResults, setSelectedVideo } = appSlice.actions;
 export default appSlice.reducer;

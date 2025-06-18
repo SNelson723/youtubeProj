@@ -1,16 +1,24 @@
-import SearchBar from "./components/SearchBar";
-import { useAppSelector, useAppDispatch } from "./hooks";
+import SearchBar from "../components/SearchBar";
+import { useAppSelector, useAppDispatch } from "../hooks";
 import { useEffect } from "react";
-import { type YTItem } from "./types";
-import VideoCard from "./components/VideoCard";
+import { type YTItem } from "../types";
+import VideoCard from "../components/VideoCard";
+import { getVideos } from "../api/videosApi";
+import { setSearchTerm, setResults } from "../features/appSlice";
 
-const App = () => {
+const Home = () => {
   const app = useAppSelector((state) => state.app);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    console.log(app.url, app.apiKey, app.searchTerm);
-  }, [app]);
+    getVideos(app.url, app.apiKey, ' ')
+      .then(((resp) => {
+        const j = resp.data;
+        dispatch(setSearchTerm(''));
+        dispatch(setResults(j.items));
+      }))
+      .catch((err) => console.log(err)); 
+  }, []);
 
   return (
     <div className="w-screen min-h-screen bg-slate-800 text-white">
@@ -32,4 +40,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Home;
