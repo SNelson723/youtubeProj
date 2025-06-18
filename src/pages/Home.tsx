@@ -1,4 +1,3 @@
-import SearchBar from "../components/SearchBar";
 import { useAppSelector, useAppDispatch } from "../hooks";
 import { useEffect } from "react";
 import { type YTItem } from "../types";
@@ -11,18 +10,17 @@ const Home = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    getVideos(app.url, app.apiKey, ' ')
-      .then(((resp) => {
+    getVideos(app.url, app.apiKey, " ")
+      .then((resp) => {
         const j = resp.data;
-        dispatch(setSearchTerm(''));
+        dispatch(setSearchTerm(""));
         dispatch(setResults(j.items));
-      }))
-      .catch((err) => console.log(err)); 
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
     <div className="w-screen min-h-screen bg-slate-800 text-white">
-      <SearchBar />
       <div className="grid grid-cols-3">
         {app.results.length > 0
           ? app.results.map((video: YTItem) => (

@@ -1,32 +1,15 @@
+import { Outlet } from "react-router-dom";
 import SearchBar from "./components/SearchBar";
-import { useAppSelector, useAppDispatch } from "./hooks";
-import { useEffect } from "react";
-import { type YTItem } from "./types";
-import VideoCard from "./components/VideoCard";
 
 const App = () => {
-  const app = useAppSelector((state) => state.app);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    console.log(app.url, app.apiKey, app.searchTerm);
-  }, [app]);
-
   return (
-    <div className="w-screen min-h-screen bg-slate-800 text-white">
+    <div className="w-screen min-h-screen bg-slate-800 text-white overflow-x-hidden">
       <SearchBar />
-      <div className="grid grid-cols-3">
-        {app.results.length > 0
-          ? app.results.map((video: YTItem) => (
-              <VideoCard
-                title={video.snippet.title}
-                description={video.snippet.description}
-                videoId={video.id.videoId}
-                thumbnail={video.snippet.thumbnails.medium}
-                channelTitle={video.snippet.channelTitle}
-              />
-            ))
-          : null}
+      <div className="flex w-full">
+        <div className="w-[10%]">Sidebar Menu</div>
+        <div className="w-[90%]">
+          <Outlet />
+        </div>
       </div>
     </div>
   );
