@@ -1,6 +1,7 @@
 import { setSelectedVideo } from "../features/appSlice";
 import { useAppDispatch } from "../hooks";
 import { decodeHTMLEntities } from "../utils.ts";
+import { useNavigate } from "react-router-dom";
 
 export type VideoCardProps = {
   videoId: string;
@@ -24,10 +25,16 @@ const VideoCard = ({
   width,
 }: VideoCardProps) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleClick = (id: string) => {
+    dispatch(setSelectedVideo(id));
+    navigate(`/play`);
+  };
 
   return (
     <div
-      onClick={() => dispatch(setSelectedVideo(videoId))}
+      onClick={() => handleClick(videoId)}
       className="flex flex-col m-2 cursor-pointer shadow-md bg-slate-50/20 rounded-xl"
       style={{ width: width }}
     >
