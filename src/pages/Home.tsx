@@ -11,7 +11,7 @@ const Home = () => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    getVideos(app.url, app.apiKey, " ")
+    getVideos(app.url, app.apiKey, "asmr")
       .then((resp) => {
         const j = resp.data;
         dispatch(setSearchTerm(""));
@@ -22,14 +22,14 @@ const Home = () => {
 
   const calculateWidth = () => {
     if (!ref.current) return;
-    const {width} = ref.current.getBoundingClientRect();
-    console.log(width)
+    const { width } = ref.current.getBoundingClientRect();
+    console.log(width);
     return width / 3.75;
   };
 
   return (
-    <div className="w-full min-h-screen bg-slate-800 text-white">
-      <div ref={ref} className="flex flex-wrap justify-center">
+    <div className="w-full min-h-screen text-white">
+      <div ref={ref} className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
         {app.results.length > 0
           ? app.results.map((video: YTItem) => (
               <VideoCard

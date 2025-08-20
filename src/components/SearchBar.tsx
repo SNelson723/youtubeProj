@@ -27,19 +27,20 @@ const SearchBar = () => {
     if (e.key === "Enter") {
       handleClick();
     }
-  }
+  };
 
   return (
-    <div className="w-full flex justify-center py-4">
+    <div className="fixed w-screen z-50 flex justify-center py-4 bg-[#181818]">
       <input
-        className="border-y-2 border-l-2 rounded-lg rounded-r-none py-0.5 px-1 w-[15%] bg-white/30 focus:outline-none"
+        className="border-y border-l rounded-l-full rounded-r-none py-2 px-1 w-[30%] bg-[#212121]/60 shadow-inner focus:outline-none"
         type="text"
         value={app.searchTerm}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
+        placeholder="Search"
       />
       <button
-        className="border-2 rounded-r-lg border-slate-50 text-black font-semibold border-l-2-none px-3 bg-emerald-300"
+        className="border rounded-r-full font-semibold border-l-2-none px-3"
         onClick={handleClick}
       >
         Search

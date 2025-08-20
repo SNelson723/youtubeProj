@@ -1,41 +1,42 @@
-
-const menuOne = [
-  { name: 'Home', link: '/' },
-  { name: 'Shorts', link: '/shorts' },
-  { name: 'Subscriptions', link: '/subs' },
-];
-
-const menuTwo = [
-  { name: 'History', link: '/contact' },
-  { name: 'Playlists', link: '/playlists' },
-  { name: 'Your videos', link: '/videos' },
-  { name: 'Your movies & TV', link: '/movies' },
-  { name: 'Watch later', link: '/watch' },
-  { name: 'Liked Videos', link: '/liked' },
-];
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { menuOne, menuTwo } from ".";
+import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 const SideBar = () => {
-
   return (
-    <div className="w-[10%] overflow-y-auto font-semibold text-[14p6]">
-      {menuOne.map((item) => (
-        <div
-          key={item.name}
-          className="pl-4 py-2 cursor-pointer hover:bg-slate-500/50 transition-all duration-300 rounded-lg"
-        >
-          {item.name}
+    <div className="fixed top-[7vh] overflow-y-auto text-[15px] w-[215px]">
+      <div className="border-b border-b-slate-50/40 pb-3">
+        {menuOne.map((item) => (
+          <div
+            key={item.name}
+            className="pl-4 py-3 cursor-pointer hover:bg-slate-500/50 transition-all duration-300 rounded-lg flex items-center gap-4"
+          >
+            <FontAwesomeIcon width={20} height={20} icon={item.icon} />
+            {item.name}
+          </div>
+        ))}
+      </div>
+      <div className="border-b border-b-slate-50/40 pb-3">
+        <div className="text-[17px] font-semibold pl-4 py-3 cursor-pointer hover:bg-slate-500/50 transition-all duration-300 rounded-lg flex items-center gap-4">
+          You
+          <FontAwesomeIcon className="pt-0.5" icon={faAngleRight} />
         </div>
-      ))}
-      <div className="bg-slate-50/50 w-full h-[1px]"></div>
-      {menuTwo.map((item) => (
-        <div
-          key={item.name}
-          className="pl-4 py-2 cursor-pointer hover:bg-slate-500/50 transition-all duration-300 rounded-lg"
-        >
-          {item.name}
+        {menuTwo.map((item) => (
+          <div
+            key={item.name}
+            className="pl-4 py-3 cursor-pointer hover:bg-slate-500/50 transition-all duration-300 rounded-lg flex items-center gap-4"
+          >
+            <FontAwesomeIcon icon={item.icon} />
+            {item.name}
+          </div>
+        ))}
+      </div>
+      <div className="border-b border-b-slate-50/40 pb-3">
+        <div className="text-[17px] font-semibold pl-4 py-3 cursor-pointer hover:bg-slate-500/50 transition-all duration-300 rounded-lg flex items-center gap-4">
+          Subscriptions
+          <FontAwesomeIcon className="pt-0.5" icon={faAngleRight} />
         </div>
-      ))}
-      <div className="bg-slate-50/50 w-full h-[1px]"></div>
+      </div>
     </div>
   );
 };

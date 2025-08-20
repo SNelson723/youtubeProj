@@ -35,7 +35,7 @@ const VideoCard = ({
   return (
     <div
       onClick={() => handleClick(videoId)}
-      className="flex flex-col m-2 cursor-pointer shadow-md bg-slate-50/20 rounded-xl"
+      className="flex flex-col m-2 cursor-pointer"
       style={{ width: width }}
     >
       <img
